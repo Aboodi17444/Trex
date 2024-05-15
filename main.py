@@ -3,6 +3,7 @@ import os
 import random
 
 
+
 # Initiera Pygame biblioteket
 pygame.init()
 
