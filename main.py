@@ -2,6 +2,7 @@ import pygame
 import os
 import random
 
+#hej
 # Initiera Pygame biblioteket
 pygame.init()
 
