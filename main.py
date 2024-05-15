@@ -2,6 +2,7 @@ import pygame
 import os
 import random
 
+
 # Initiera Pygame biblioteket
 pygame.init()
 
@@ -30,6 +31,7 @@ FÅGEL = [pygame.image.load(os.path.join("T-rex/Fågel", "Fågel1.png")),
 
 HIMMEL = pygame.image.load(os.path.join("T-rex/Annat", "Himmel.png"))
 MARKEN = pygame.image.load(os.path.join("T-rex/Annat", "Marken.png"))
+
 
 
 # Klassen för dinosaurien
