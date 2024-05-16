@@ -2,7 +2,6 @@ import pygame
 import os
 import random
 
-
 # Initiera Pygame biblioteket
 pygame.init()
 
@@ -17,7 +16,7 @@ SPRINGA = [pygame.image.load(os.path.join("T-rex/Dinasorie", "Ruscha1.png")),
            pygame.image.load(os.path.join("T-rex/Dinasorie", "Ruscha2.png"))]
 HOPPA = pygame.image.load(os.path.join("T-rex/Dinasorie", "Hoppa.png"))
 DUCKA = [pygame.image.load(os.path.join("T-rex/Dinasorie", "Ducka1.png")),
-           pygame.image.load(os.path.join("T-rex/Dinasorie", "Ducka2.png"))]
+         pygame.image.load(os.path.join("T-rex/Dinasorie", "Ducka2.png"))]
 
 KAKTUS = [pygame.image.load(os.path.join("T-rex/Kaktus", "Kaktus1.png")),
           pygame.image.load(os.path.join("T-rex/Kaktus", "Kaktus2.png")),
@@ -32,7 +31,14 @@ FÅGEL = [pygame.image.load(os.path.join("T-rex/Fågel", "Fågel1.png")),
 HIMMEL = pygame.image.load(os.path.join("T-rex/Annat", "Himmel.png"))
 MARKEN = pygame.image.load(os.path.join("T-rex/Annat", "Marken.png"))
 
+# Ladda ljudfiler
+DUCk_SOUND = pygame.mixer.Sound(os.path.join("Background-sound", "click1.mp3"))
+JUMP_SOUND = pygame.mixer.Sound(os.path.join("Background-sound", "jump.wav"))
+DEATH_SOUND = pygame.mixer.Sound(os.path.join("Background-sound", "Gamefail.mp3"))
+BACKGROUND_MUSIC = pygame.mixer.Sound(os.path.join("Background-sound", "Back-sound.mp3"))
 
+# Spela upp bakgrundsmusiken
+BACKGROUND_MUSIC.play(loops=-1)  # Spela upp bakgrundsmusiken i en slinga tills den stoppas
 
 # Klassen för dinosaurien
 class Dinosaur:
@@ -77,10 +83,12 @@ class Dinosaur:
             self.dino_duck = False
             self.dino_run = False
             self.dino_jump = True
+            JUMP_SOUND.play()  # Spela upp ljudet när dinosaurien hoppar
         elif userInput[pygame.K_DOWN] and not self.dino_jump:
             self.dino_duck = True
             self.dino_run = False
             self.dino_jump = False
+            DUCk_SOUND.play()  # Spela upp ljudet när dinosaurien duckar
         elif not (self.dino_jump or userInput[pygame.K_DOWN]):
             self.dino_duck = False
             self.dino_run = True
@@ -115,6 +123,10 @@ class Dinosaur:
     # Metod för att rita dinosaurien på skärmen
     def draw(self, SCREEN):
         SCREEN.blit(self.image, (self.dino_rect.x, self.dino_rect.y))
+
+
+# Resten av koden fortsätter här...
+
 
 
 # Klassen för moln
