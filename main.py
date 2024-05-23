@@ -37,15 +37,15 @@ JUMP_SOUND = pygame.mixer.Sound(os.path.join("Background-sound", "jump.wav"))
 DEATH_SOUND = pygame.mixer.Sound(os.path.join("Background-sound", "Gamefail.mp3"))
 BACKGROUND_MUSIC = pygame.mixer.Sound(os.path.join("Background-sound", "Back-sound.mp3"))
 
-# Spela upp bakgrundsmusiken
+# Spela upp bakgrundsmusiken i loop tills man lämnar 
 BACKGROUND_MUSIC.play(loops=-1)  # Spela upp bakgrundsmusiken i en slinga tills den stoppas
 
 # Klassen för dinosaurien
 class Dinosaur:
     X_axel = 80
     Y_axel = 310
-    Y_axel_DUCKA = 340
-    HÖJD_DUCKA = 8.5
+    Y_axel_DUCKA = 340 # Y-positionen där dinosaurien visas när den duckar
+    HÖJD_DUCKA = 8.5 # Hastigheten som dinosaurien hoppar med
 
     def __init__(self):
         # Ladda bilderna för ducka, springa och hoppa
@@ -123,10 +123,6 @@ class Dinosaur:
     # Metod för att rita dinosaurien på skärmen
     def draw(self, SCREEN):
         SCREEN.blit(self.image, (self.dino_rect.x, self.dino_rect.y))
-
-
-# Resten av koden fortsätter här...
-
 
 
 # Klassen för moln
@@ -263,6 +259,7 @@ def main():
                 obstacle.draw(SKÄRM)
                 obstacle.update()
                 if player.dino_rect.colliderect(obstacle.rect):
+                    DEATH_SOUND.play()  # Spela upp ljudet när dinosaurien dör
                     pygame.time.delay(2000)
                     death_count += 1
                     menu(death_count)
@@ -309,5 +306,6 @@ def menu(death_count):
 
 # Starta menyn
 menu(death_count=0)
+
 
 
